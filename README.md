@@ -9,3 +9,5 @@
 ##### Neovim
 
 ##### Tmux
+
+##### Stow
