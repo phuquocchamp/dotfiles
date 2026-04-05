@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Vim/Neovim swap and backup files
+*.swp
+*.swo
+*~
+
+# Neovim plugin cache (uncomment if you don't want to pin plugin versions)
+# nvim/.config/nvim/lazy-lock.json
