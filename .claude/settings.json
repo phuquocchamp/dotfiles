@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "file=$(echo \"$CLAUDE_TOOL_INPUT\" | jq -r '.file_path // empty'); [[ \"$file\" == *.sh ]] && command -v shellcheck &>/dev/null && shellcheck \"$file\" || true"
+          }
+        ]
+      }
+    ]
+  }
+}
