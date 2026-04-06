@@ -4,7 +4,7 @@ return {
   { "williamboman/mason-lspconfig.nvim",
     dependencies = { "neovim/nvim-lspconfig" },
     opts = {
-      ensure_installed = { "ts_ls", "pyright", "lua_ls" },
+      ensure_installed = { "ts_ls", "pyright", "lua_ls", "jsonls", "eslint" },
       handlers = {
         function(server)
           require("lspconfig")[server].setup({
@@ -28,7 +28,7 @@ return {
     } },
 
   { "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip" },
+    dependencies = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
     config = function()
       local cmp = require("cmp")
       cmp.setup({
@@ -39,7 +39,13 @@ return {
           ["<S-Tab>"]   = cmp.mapping.select_prev_item(),
           ["<C-e>"]     = cmp.mapping.abort(),
         }),
-        sources = { { name = "nvim_lsp" } },
+        snippet = {
+          expand = function(args) require("luasnip").lsp_expand(args.body) end,
+        },
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        },
       })
     end },
 }
