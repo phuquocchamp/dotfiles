@@ -5,7 +5,8 @@ return {
         transparent_background = true,
       })
       vim.cmd.colorscheme("catppuccin-mocha")
-    end },
+    end
+  },
 
   { "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
