@@ -63,10 +63,13 @@ A minimal, fast Neovim setup built with [lazy.nvim](https://github.com/folke/laz
 | `p` | Visual | Paste without overwriting the unnamed register |
 | `<Esc>` | Terminal | Exit terminal mode |
 
-### Window Navigation
+### Window Management
 
 | Key | Mode | Action |
 |-----|------|--------|
+| `<C-w>s` or `:sp` | Normal | Split window horizontally |
+| `<C-w>v` or `:vsp` | Normal | Split window vertically |
+| `<C-w>q` or `:q` | Normal | Close current window |
 | `<C-h>` | Normal | Move to left window |
 | `<C-j>` | Normal | Move to bottom window |
 | `<C-k>` | Normal | Move to top window |
@@ -85,6 +88,16 @@ A minimal, fast Neovim setup built with [lazy.nvim](https://github.com/folke/laz
 | `<leader>ff` | Normal | Find files |
 | `<leader>fg` | Normal | Live grep (search text in project) |
 | `<leader>fb` | Normal | List open buffers |
+
+**Inside a Telescope picker:**
+
+| Key | Action |
+|-----|--------|
+| `<CR>` | Open file |
+| `<C-x>` | Open in horizontal split |
+| `<C-v>` | Open in vertical split |
+| `<C-t>` | Open in new tab |
+| `<C-u>` / `<C-d>` | Scroll preview up / down |
 
 ### LSP (active in buffers with a language server)
 
