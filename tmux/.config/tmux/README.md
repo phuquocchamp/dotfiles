@@ -5,6 +5,7 @@ Minimal tmux setup optimized for macOS + iTerm2 with Neovim true color support.
 ## Requirements
 
 - tmux >= 3.1
+- [TPM](https://github.com/tmux-plugins/tpm) (Tmux Plugin Manager)
 
 ## Installation
 
@@ -13,6 +14,62 @@ mkdir -p ~/.config/tmux
 # Place tmux.conf in this directory, then start tmux
 tmux
 ```
+
+### Plugin Manager (TPM)
+
+Plugins are declared in `tmux.conf` via `set -g @plugin '...'` and installed/managed through TPM.
+
+```bash
+# Clone TPM (one-time setup)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+| Shortcut     | Action                                    |
+| ------------ | ------------------------------------------ |
+| `Ctrl+b` `I` | Install new plugins listed in `tmux.conf` |
+| `Ctrl+b` `U` | Update installed plugins                   |
+| `Ctrl+b` `alt+u` | Remove/uninstall plugins no longer in `tmux.conf` |
+
+---
+
+## Plugins
+
+| Plugin                                                              | Purpose                                                                                          |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [`tmux-menus`](https://github.com/jaclu/tmux-menus)                    | Popup menus for common tmux actions (panes, windows, sessions) without memorizing every shortcut |
+| [`tmux-agent-sidebar`](https://hiroppy.github.io/tmux-agent-sidebar/) | Sidebar for managing AI coding agents (Claude Code) — agent status, git worktrees, activity log  |
+
+### Tmux Menus
+
+Opens a popup menu with common tmux operations (pane/window/session management), useful when you don't remember a specific keybinding.
+
+| Shortcut      | Action              |
+| ------------- | ------------------- |
+| `Ctrl+b` `\` | Open the menus popup |
+
+Inside the popup, follow the on-screen key hints to select an action; `Esc` closes it.
+
+### Agent Sidebar
+
+Adds a sidebar pane that lists active agent sessions (Claude Code) across windows, plus a bottom panel with activity log / git status.
+
+| Shortcut          | Action                                     |
+| ----------------- | ------------------------------------------- |
+| `Ctrl+b` `e`      | Toggle sidebar in the current window        |
+| `Ctrl+b` `E`      | Toggle sidebar in all windows               |
+| `j` / `↓`         | Move cursor down (sidebar focused)          |
+| `k` / `↑`         | Move cursor up (sidebar focused)            |
+| `h` / `←`         | Previous status filter                      |
+| `l` / `→`         | Next status filter                          |
+| `Tab`             | Rotate through status filters               |
+| `Shift+Tab`       | Switch bottom panel tab (Activity ⇄ Git)   |
+| `Enter`           | Jump to the selected pane                   |
+| `r`               | Open repo filter popup                      |
+| `n`               | Create a new worktree with an agent         |
+| `x`               | Delete the selected spawned pane            |
+| `Esc`             | Exit focus / dismiss popup                  |
+
+> Default agent is Claude Code (`@agent-sidebar-default-agent` = `claude`). New worktrees are created under `.worktrees/` with branch prefix `agent/` — both configurable via tmux options.
 
 ---
 
@@ -96,6 +153,7 @@ tmux
 | Status left     | session name           | Session name in a Mauve block (Catppuccin `#cba6f7`)                            |
 | Status center   | window list            | Inactive windows on Surface0 bg; active window on Mauve bg                      |
 | Status right    | hostname · time · date | Hostname (Teal on Surface1) · HH:MM (dark on Blue) · Day DD Mon (dark on Peach) |
+| Plugins         | tmux-menus, tmux-agent-sidebar | Managed via TPM, declared at the bottom of `tmux.conf`                          |
 
 ---
 
